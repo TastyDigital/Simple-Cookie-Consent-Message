@@ -1,0 +1,18 @@
+{
+    "name": "tastydigital/simple-cookie-consent-message",
+    "description": "Simple Cookie Consent Message Plugin for WP Packagist. derived from Tim Trotts https://wordpress.org/plugins/eu-cookie-law-consent/, but with dynamic cookie expiry date.",
+    "keywords": ["wordpress", "plugin", "legal", "Cookie notice"],
+    "homepage": "https://github.com/TastyDigital/Simple-Cookie-Consent-Message",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "TastyDigital",
+			"email": "support@tastydigital.com"
+		}
+	],
+	"minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6"
+    }
+}
