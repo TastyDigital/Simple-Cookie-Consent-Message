@@ -15,9 +15,9 @@ Adds a message to the top of the page stating that cookies are used and if they 
 
 == Description ==
 
-This plug-in is derived from an abandoned [plugin](https://wordpress.org/plugins/eu-cookie-law-consent/) by [Tim Trott](http://timtrott.co.uk/europe-cookie-law-plugin/)
+This WordPress plug-in is derived from an abandoned [plugin](https://wordpress.org/plugins/eu-cookie-law-consent/) by [Tim Trott](http://timtrott.co.uk/europe-cookie-law-plugin/)
 
-It will create a fixed banner at the top of the guest's browser that greets them with the message:
+It will create a fixed banner on the guest's browser that greets them with the message:
 
 `We use cookies to ensure that we give you the best experience on our website. If you continue without changing your settings, we'll assume that you are happy to receive all cookies from this website. If you would like to change your preferences you may do so by following the instructions <a href="http://www.aboutcookies.org/Default.aspx?page=1">here</a>`
 
