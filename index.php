@@ -37,7 +37,7 @@ function SCCM_cookieMessage()
 	$maxWidth = $setting_value['notificationMaxWidth'];
 
 	
-	if ($setting_value['chkDebug'] == 'on')
+	if (isset($setting_value['chkDebug']) && $setting_value['chkDebug'] == 'on')
 	{
 		$debug = true;
 	}
@@ -89,40 +89,37 @@ function SCCM_cookieMessage()
 		$closeSize = $setting_value['closeSize'];
 		$closeFont = $setting_value['closeFont'];
 	}
+
+	$localizeVars = array(
+		'rightContext' 				=> $debug && current_user_can('administrator') ? 1 : 0,
+		'title'						=> $title,
+		'message'					=> $message,
+		'closeMsg'					=> $close,
+		'backgroundColour' 			=> $backgroundColour,
+		'backgroundTransparency'	=> $backgroundTransparency,
+		'padding'					=> $padding,
+		'titleColour'				=> $titleColour,
+		'titleFont'					=> $titleFont,
+		'titleSize'					=> $titleSize,
+		'messageColour'				=> $messageColour,
+		'messageFont'				=> $messageFont,
+		'messageSize'				=> $messageSize,
+		'closeColour'				=> $closeColour,
+		'closeFont'					=> $closeFont,
+		'closeSize'					=> $closeSize,
+		'maxWidth'					=> $maxWidth
+	);
+
+	wp_enqueue_script('sccm-script', plugin_dir_url( __FILE__ ) . 'js/sccm.js', array('jquery'));
+	wp_localize_script('sccm-script', 'phpVars', $localizeVars);	
+	
 	
 	// 	The actual code sent to the browser
 ?>
-<script type="text/javascript">
-    (function($){
-      if (navigator.cookieEnabled === true)
-      {
-          <?php if (!($debug && current_user_can('administrator'))) { ?>
-        if (document.cookie.indexOf("consented") === -1)
-        {
-            <?php } ?>
-          $('body').append('<div id="cookie"><div id="wrapper"><h2><?php echo $title; ?></h2><p><?php echo $message; ?></p><div id="close"><a href="#" id="closecookie"><?php echo $close; ?></a></div><div style="clear:both"></div></div></div>');
-          $('head').append('<style type="text/css">#cookie {position:fixed;left:0;bottom:0;width:100%;height:100%;background:rgb(<?php echo $backgroundColour; ?>);background:rgba(<?php echo $backgroundColour; ?>,<?php echo $backgroundTransparency; ?>);z-index:99999;}#cookie #wrapper {padding:<?php echo $padding; ?>;}#cookie h2 {color:<?php echo $titleColour; ?>;display:block;font-family:<?php echo $titleFont; ?>;font-size:<?php echo $titleSize; ?>;width:18%;margin-top:0;margin-right:2%;float:left;text-align:right;}#cookie p {color:<?php echo $messageColour; ?>;display:block;font-family:<?php echo $messageFont; ?>;font-size:<?php echo $messageSize; ?>;width:68%;margin:0 1%;float:left;}#cookie p a {color:<?php echo $titleColour; ?>;}#cookie #close{text-align:center;}#closecookie{color:<?php echo $closeColour; ?>;font-family:<?php echo $closeFont; ?>;font-size:<?php echo $closeSize; ?>;text-decoration:none}@media only screen and (min-width: 480px) {#cookie {height:auto;}#cookie #wrapper{max-width:<?php echo $maxWidth; ?>;margin-left:auto;margin-right:auto;}#cookie #close{width:9%;float:right;}}</style>');
-          $('#cookie').slideDown("fast");
-          $('#closecookie').on('click', function(e) {
-              e.preventDefault();
-              this.blur();
-              $('#cookie').slideUp("fast");
-	          <?php if (!($debug && current_user_can('administrator'))) { ?>
-              var date = new Date();
-              date.setTime(date.getTime()+(10*365*24*60*60*1000));
-              document.cookie='consented=yes; path=/; expires=' + date.toGMTString();
-	          <?php } ?>
-          });
-            <?php  if (!($debug && current_user_can('administrator'))) { ?>
-        }
-          <?php } ?>
-      }
-    })(jQuery);
-</script>
+
 <?php
 }
 add_action('wp_footer', 'SCCM_cookieMessage'); 
-
 
 
 // Create the admin menu
