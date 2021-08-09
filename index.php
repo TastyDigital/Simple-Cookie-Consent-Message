@@ -4,7 +4,7 @@ Plugin Name: Simple Cookie Consent Message
 Plugin URI: https://github.com/TastyDigital/Simple-Cookie-Consent-Message
 Description: This is a small plugin which adds a banner to the page for each visitor. This plugin is used for implied consent, which means that if the guest continues using the site they agree to cookie use!
 Author: Tasty Digital
-Version: 1.1
+Version: 1.2
 Author URI: https://tastydigital.com/
 */
 
